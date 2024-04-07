@@ -1,19 +1,22 @@
 version: "3"
 
 volumes:
-  database:
+  seyana-database:
     driver: local
 
 services:
-  mysql:
-    platform: linux/amd64
-    image: mysql:8.0.32
-    container_name: turborepo_mysql
+  db:
+    container_name: seyana-db
+    image: postgres:14.6
     restart: always
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
-      MYSQL_DATABASE: turborepo
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      POSTGRES_DB: seyana
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=C"
     volumes:
-      - database:/var/lib/mysql
+      - type: volume
+        source: seyana-database
+        target: /var/lib/postgresql/data
