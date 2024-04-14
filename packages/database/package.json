@@ -5,11 +5,11 @@
     ".": "./src/client.ts"
   },
   "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
-    "db:push": "prisma db push",
     "db:seed": "tsx src/seed.ts",
-    "dev": "tsup --watch",
     "format": "prisma format",
     "generate": "prisma generate",
     "lint": "eslint . --max-warnings 0",
@@ -22,11 +22,12 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20.12.7",
     "eslint": "^8.57.0",
     "prisma": "^5.10.2",
     "rimraf": "^5.0.5",
-    "@repo/typescript-config": "workspace:*",
     "tsx": "^4.7.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.5"
   }
 }
